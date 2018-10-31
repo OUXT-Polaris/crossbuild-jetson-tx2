@@ -41,8 +41,11 @@ RUN apt-get update && \
 #	librsvg2-common:arm64 \
 #	&& apt-get clean
 
-COPY pylon_5.1.0.12682-deb0_arm64.deb /
-RUN dpkg -i --force-all /pylon_5.1.0.12682-deb0_arm64.deb
+
+
+RUN curl -o cudnn.deb https://www.baslerweb.com/fp-1535524598/media/downloads/software/pylon_software/pylon_5.1.0.12682-deb0_arm64.deb \
+  && dpkg --force-all -i pylon_5.1.0.12682-deb0_arm64.deb \
+  && rm pylon_5.1.0.12682-deb0_arm64.deb
 
 RUN curl https://developer.download.nvidia.com/devzone/devcenter/mobile/jetpack_l4t/3.3/lw.xd42/JetPackL4T_33_b39/cuda-repo-l4t-9-0-local_9.0.252-1_arm64.deb -o cuda_arm64.deb \
    && dpkg -i cuda_arm64.deb \
